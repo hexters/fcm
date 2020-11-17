@@ -17,7 +17,12 @@ class Notification implements FcmResource
     /**
      * @var string|null
      */
-    protected $image;
+    protected $icon;
+
+    /**
+     * @var string|null
+     */
+    protected $action;
 
     /**
      * @return string|null
@@ -60,18 +65,37 @@ class Notification implements FcmResource
     /**
      * @return string|null
      */
-    public function getImage(): ?string
+    public function getIcon(): ?string
     {
-        return $this->image;
+        return $this->icon;
     }
 
     /**
-     * @param string|null $image
+     * @param string|null $icon
      * @return Notification
      */
-    public function setImage(?string $image): self
+    public function setIcon(?string $icon): self
     {
-        $this->image = $image;
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAction(): ?string
+    {
+        return $this->action;
+    }
+
+    /**
+     * @param string|null $action
+     * @return Notification
+     */
+    public function setAction(?string $action): self
+    {
+        $this->action = $action;
 
         return $this;
     }
@@ -92,7 +116,8 @@ class Notification implements FcmResource
         return [
             'title' => $this->getTitle(),
             'body' => $this->getBody(),
-            'image' => $this->getImage(),
+            'icon' => $this->getIcon(),
+            'click_action' => $this->getAction()
         ];
     }
 }
